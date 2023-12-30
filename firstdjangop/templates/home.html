@@ -1,0 +1,72 @@
+{% extends 'base.html' %}
+
+{% block content %}
+  <div class="jumbotron" style="background-color: #333333; color: #ffffff;">
+    <div class="container">
+      <h1 class="display-4">Welcome to Excel to VCF Converter</h1>
+      <p class="lead">Easily convert your Excel contacts to VCF format!</p>
+      <hr class="my-4">
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="form-group">
+          <label for="excelFile" style="color: #ffffff;">Upload Excel File:</label>
+          <input type="file" class="form-control-file" id="excelFile" name="excel_file" accept=".xls,.xlsx">
+        </div>
+        <div class="form-group">
+          <label for="prefixOption" style="color: #ffffff;">Do you want to add a prefix to vCards?</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="prefix_option" id="prefixYes" value="yes">
+            <label class="form-check-label" for="prefixYes" style="color: #ffffff;">
+              Yes
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="prefix_option" id="prefixNo" value="no" checked>
+            <label class="form-check-label" for="prefixNo" style="color: #ffffff;">
+              No
+            </label>
+          </div>
+        </div>
+        <div class="form-group" id="prefixInput" style="display: none;">
+          <label for="prefixText" style="color: #ffffff;">Enter Prefix:</label>
+          <input type="text" class="form-control" id="prefixText" name="prefix_text" placeholder="Enter prefix">
+        </div>
+        <div class="form-group">
+          <label for="postfixOption" style="color: #ffffff;">Do you want to add a postfix to vCards?</label>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="postfix_option" id="postfixYes" value="yes">
+            <label class="form-check-label" for="postfixYes" style="color: #ffffff;">
+              Yes
+            </label>
+          </div>
+          <div class="form-check">
+            <input class="form-check-input" type="radio" name="postfix_option" id="postfixNo" value="no" checked>
+            <label class="form-check-label" for="postfixNo" style="color: #ffffff;">
+              No
+            </label>
+          </div>
+        </div>
+        <div class="form-group" id="postfixInput" style="display: none;">
+          <label for="postfixText" style="color: #ffffff;">Enter Postfix:</label>
+          <input type="text" class="form-control" id="postfixText" name="postfix_text" placeholder="Enter postfix">
+        </div>
+        <button type="submit" class="btn btn-primary">Convert to VCF</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      document.getElementById('prefixYes').addEventListener('change', function() {
+        var prefixInput = document.getElementById('prefixInput');
+        prefixInput.style.display = (this.checked) ? 'block' : 'none';
+      });
+  
+      document.getElementById('postfixYes').addEventListener('change', function() {
+        var postfixInput = document.getElementById('postfixInput');
+        postfixInput.style.display = (this.checked) ? 'block' : 'none';
+      });
+    });
+  </script>
+  
+{% endblock %}

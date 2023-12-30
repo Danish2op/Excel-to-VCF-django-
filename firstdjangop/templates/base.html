@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Excel to VCF Converter</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+  <style>
+    /* Custom CSS for the base template */
+  body {
+    background-color: #1c1c1c; /* Changed background color */
+    color: #333333;
+    font-family: 'Roboto', sans-serif; /* Changed font */
+  }
+    .navbar {
+      background-color: #1c1c1c !important;
+    }
+    .navbar-brand,
+    .navbar-nav .nav-link {
+      color: #ffffff !important;
+    }
+    /* Add more custom styles as needed */
+  </style>
+</head>
+<body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div class="container">
+      <a class="navbar-brand" href="#">Excel to VCF Converter</a>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+          <li class="nav-item">
+            <a class="nav-link" href="#">Home</a>
+          </li>
+          <!-- Add more navigation links as needed -->
+  
+          <!-- Know the Creator Link -->
+          <li class="nav-item">
+            <a class="nav-link" href="#" id="showCreator">Know the Creator</a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+  
+  <!-- Creator Card (Hidden by Default) -->
+  <div class="card float-card" id="creatorCard" style="display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); z-index: 9999; background-color: #fff; padding: 20px; border-radius: 5px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);">
+    <img src="https://i.ibb.co/X8jmq6g/creator-image.jpg" class="card-img-top" alt="Creator Image" style="max-width: 100%; height: auto;">
+    <div class="card-body">
+      <p class="card-text" style="color: black;">Created by Danish Sharma</p>
+    </div>
+  </div>
+  
+
+  
+  <div class="container mt-4">
+    {% block content %}
+    {% endblock %}
+  </div>
+  <!-- JavaScript Code -->
+  <script>
+    document.getElementById("showCreator").addEventListener("click", function (e) {
+      e.preventDefault();
+      document.getElementById("creatorCard").style.display = "block";
+    });
+  
+    document.getElementById("creatorCard").addEventListener("click", function () {
+      document.getElementById("creatorCard").style.display = "none";
+    });
+  </script>
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
